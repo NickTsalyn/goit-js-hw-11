@@ -1,12 +1,12 @@
 import Notiflix from 'notiflix';
-import debounce from 'lodash.debounce';
-import axios from 'axios';
-import SlimSelect from 'slim-select';
+// import debounce from 'lodash.debounce';
+// import axios from 'axios';
+// import SlimSelect from 'slim-select';
 
 
 
-axios.defaults.headers.common['x-api-key'] =
-  'live_vpT8AlM2UzkT2NU9PvSi7LYErckhMQOSy2G7GM3Q13VkTLIhMAj8zKURMQiz92zB';
+// axios.defaults.headers.common['x-api-key'] =
+//   'live_vpT8AlM2UzkT2NU9PvSi7LYErckhMQOSy2G7GM3Q13VkTLIhMAj8zKURMQiz92zB';
 
 
 
