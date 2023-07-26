@@ -1,14 +1,63 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    <title>Homework 10</title>
+    <style>
+      .loader {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        position: relative;
+        animation: rotate 1s linear infinite
+      }
+      .loader::before , .loader::after {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        inset: 0px;
+        border-radius: 50%;
+        border: 5px solid #FFF;
+        animation: prixClipFix 2s linear infinite ;
+      }
+      .loader::after{
+        transform: rotate3d(90, 90, 0, 180deg );
+        border-color: #FF3D00;
+      }
+
+      @keyframes rotate {
+        0%   {transform: rotate(0deg)}
+        100%   {transform: rotate(360deg)}
+      }
+
+      @keyframes prixClipFix {
+          0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+          50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+          75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      }
+    </style>
+    <link rel="stylesheet" href="/src/styles.css">
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <select class="breed-select"></select>
+    <p class="loader"></p>
+    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
+    <div class="cat-info"></div>
+
+    <!-- <input type="text" id="search-box" />
+    <ul class="country-list"></ul>
+    <div class="country-info"></div> -->
+
+
+    <h1>Гра на вгадування чисел</h1>
+    <p>Вгадайте число від 1 до 100:</p>
+    <input type="number" id="guessInput">
+    <button id="btn">Вгадати</button>
+    <button id="clear-btn">Почати знов</button>
+    <p id="message"></p>
+    <h2 id="timer"></h2>
+
+    <script src="index.js" type="module"></script>
   </body>
 </html>
