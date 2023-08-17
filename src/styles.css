@@ -1,4 +1,62 @@
-select {
-    width: 100px;
-    height: 20px;
+.wrapper {
+  width: 100%;
+  height: 100px;
+  background-color: deepskyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  /* border: 0.854px solid grey; */
+}
+
+.button {
+    width: 42px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 92%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-wrapper {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 35px;
+}
+
+.icon {
+    stroke: black;
+    fill: black;
+}
+
+.photo-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.photo-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.load-more {
+  display: none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
 }
