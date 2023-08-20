@@ -2,6 +2,7 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
+import { divide } from 'lodash';
 
 const apiKey = '38524305-622add03b446e56a9366d3fee';
 const searchForm = document.getElementById('search-form');
@@ -99,3 +100,4 @@ searchForm.addEventListener('submit', async event => {
     Notiflix.Notify.failure('Error while fetching images. Please try again.');
   }
 });
+ 
