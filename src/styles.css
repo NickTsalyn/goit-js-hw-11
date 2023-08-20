@@ -6,6 +6,10 @@ b {
   list-style: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .wrapper {
   width: 100%;
   height: 100px;
@@ -32,6 +36,8 @@ b {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    background-color: transparent;
 }
 
 .search-form {
@@ -46,8 +52,8 @@ b {
 }
 
 .icon {
-    stroke: black;
-    fill: black;
+    stroke: rgb(162, 156, 156);
+    fill: rgb(69, 66, 66);
 }
 
 .photo-card {
@@ -57,6 +63,7 @@ b {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #f3efefd6;
 }
 
 .photo-card img {
@@ -80,6 +87,7 @@ b {
 .photo-card {
   width: 200px;
   height: 200px;
+  border: 3px
 }
 
 .gallery {
@@ -94,6 +102,7 @@ b {
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   font-size: 10px;
   align-items: center;

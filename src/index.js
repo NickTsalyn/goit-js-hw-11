@@ -1,30 +1,26 @@
-import axios from "axios";
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-import Notiflix from "notiflix";
+import axios from 'axios';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import Notiflix from 'notiflix';
 
-
-
-const apiKey = "38524305-622add03b446e56a9366d3fee";
-const searchForm = document.getElementById("search-form");
-const gallery = document.querySelector(".gallery");
-const loadMoreBtn = document.querySelector(".load-more");
+const apiKey = '38524305-622add03b446e56a9366d3fee';
+const searchForm = document.getElementById('search-form');
+const gallery = document.querySelector('.gallery');
+const loadMoreBtn = document.querySelector('.load-more');
 let page = 1;
-let currentSearchQuery = "";
+let currentSearchQuery = '';
 
-
-
-const lightbox = new SimpleLightbox(".gallery a");
-loadMoreBtn.addEventListener("click", loadMoreImages);
+const lightbox = new SimpleLightbox('.gallery a');
+loadMoreBtn.addEventListener('click', loadMoreImages);
 
 async function searchImages(query, page = 1) {
   try {
-    const response = await axios.get("https://pixabay.com/api/", {
+    const response = await axios.get('https://pixabay.com/api/', {
       params: {
         key: apiKey,
         q: query,
-        image_type: "photo",
-        orientation: "horizontal",
+        image_type: 'photo',
+        orientation: 'horizontal',
         safesearch: true,
         per_page: 40,
         page: page,
@@ -38,7 +34,7 @@ async function searchImages(query, page = 1) {
 
 function renderGallery(images) {
   const cardsMarkup = images.map(
-    (image) => `
+    image => `
     <div class="photo-card">
       <a href="${image.largeImageURL}" data-lightbox="gallery">
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
@@ -52,7 +48,7 @@ function renderGallery(images) {
     </div>
   `
   );
-  gallery.insertAdjacentHTML('beforeend', cardsMarkup)
+  gallery.insertAdjacentHTML('beforeend', cardsMarkup);
 }
 
 async function loadMoreImages() {
@@ -60,7 +56,7 @@ async function loadMoreImages() {
   try {
     const data = await searchImages(currentSearchQuery, page);
     if (data.hits.length === 0) {
-      loadMoreBtn.style.display = "none";
+      loadMoreBtn.style.display = 'none';
       Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
@@ -69,15 +65,15 @@ async function loadMoreImages() {
       lightbox.refresh();
     }
   } catch (error) {
-    Notiflix.Notify.failure("Error while fetching images. Please try again.");
+    Notiflix.Notify.failure('Error while fetching images. Please try again.');
   }
 }
 
-searchForm.addEventListener("submit", async (event) => {
+searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   const searchQuery = event.target.elements.searchQuery.value.trim();
-  if (searchQuery === "") {
-    Notiflix.Notify.info("Please enter a search query.");
+  if (searchQuery === '') {
+    Notiflix.Notify.info('Please enter a search query.');
     return;
   }
 
@@ -87,19 +83,19 @@ searchForm.addEventListener("submit", async (event) => {
   try {
     const data = await searchImages(currentSearchQuery, page);
     if (data.hits.length === 0) {
-      gallery.innerHTML = "";
-      loadMoreBtn.style.display = "none";
+      gallery.innerHTML = '';
+      loadMoreBtn.style.display = 'none';
       Notiflix.Notify.warning(
-        "Sorry, there are no images matching your search query. Please try again."
+        'Sorry, there are no images matching your search query. Please try again.'
       );
     } else {
+      gallery.innerHTML = ''
       renderGallery(data.hits);
       lightbox.refresh();
-      loadMoreBtn.style.display = "block";
+      loadMoreBtn.style.display = 'block';
+      event.target.elements.searchQuery.value = ''
     }
   } catch (error) {
-    Notiflix.Notify.failure("Error while fetching images. Please try again.");
+    Notiflix.Notify.failure('Error while fetching images. Please try again.');
   }
 });
-
-
