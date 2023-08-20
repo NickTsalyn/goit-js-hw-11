@@ -3,15 +3,19 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import Notiflix from "notiflix";
 
+
+
 const apiKey = "38524305-622add03b446e56a9366d3fee";
 const searchForm = document.getElementById("search-form");
-const gallery = document.getElementById("gallery");
+const gallery = document.querySelector(".gallery");
 const loadMoreBtn = document.querySelector(".load-more");
 let page = 1;
 let currentSearchQuery = "";
 
-// Initialize SimpleLightbox
+
+
 const lightbox = new SimpleLightbox(".gallery a");
+loadMoreBtn.addEventListener("click", loadMoreImages);
 
 async function searchImages(query, page = 1) {
   try {
@@ -22,7 +26,7 @@ async function searchImages(query, page = 1) {
         image_type: "photo",
         orientation: "horizontal",
         safesearch: true,
-        per_page: 20,
+        per_page: 40,
         page: page,
       },
     });
@@ -48,7 +52,7 @@ function renderGallery(images) {
     </div>
   `
   );
-  gallery.innerHTML = cardsMarkup.join("");
+  gallery.insertAdjacentHTML('beforeend', cardsMarkup)
 }
 
 async function loadMoreImages() {
@@ -98,4 +102,4 @@ searchForm.addEventListener("submit", async (event) => {
   }
 });
 
-loadMoreBtn.addEventListener("click", loadMoreImages);
+
