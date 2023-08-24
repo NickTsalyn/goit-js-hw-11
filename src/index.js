@@ -26,7 +26,6 @@ async function searchImages(query, page = 1) {
         page: page,
       },
     });
-    console.log(response.data)
     return response.data;
   } catch (error) {
     throw error;
