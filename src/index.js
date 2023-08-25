@@ -9,6 +9,7 @@ const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 let page = 1;
 let currentSearchQuery = '';
+const queryLimit = 40
 
 const lightbox = new SimpleLightbox('.gallery a');
 loadMoreBtn.addEventListener('click', loadMoreImages);
@@ -22,7 +23,7 @@ async function searchImages(query, page = 1) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        per_page: 40,
+        per_page: queryLimit,
         page: page,
       },
     });
@@ -55,16 +56,16 @@ async function loadMoreImages() {
   page++;
   try {
     const data = await searchImages(currentSearchQuery, page);
-    if (data.hits.length === 0) {
+    renderGallery(data.hits);
+      lightbox.refresh();
+
+    if (page > data.totalHits / queryLimit) {
       loadMoreBtn.style.display = 'none';
       Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
     } 
-    else {
-      renderGallery(data.hits);
-      lightbox.refresh();
-    }
+    
   } catch (error) {
     Notiflix.Notify.failure('Error while fetching images. Please try again.');
   }
